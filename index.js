@@ -1,4 +1,9 @@
 // npm start - starts nodemon
+//
+// POST, Add User, ok201/err400: curl --data '{"name":"abc","password":"xyz"}' -v localhost:8000/users
+// GET, list of Users, ok200: curl -v localhost:8000/users
+// request without /users, err404: curl localhost:8000
+//
 const http = require("http");
 const users = [];
 
