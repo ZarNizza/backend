@@ -1,6 +1,5 @@
+// npm start - starts nodemon
 const http = require("http");
-
-// function createHandler() {
 const users = [];
 
 const handler = (req, res) => {
@@ -16,7 +15,10 @@ const handler = (req, res) => {
             console.log("requestBody = ", requestBody);
             const parsedRequest = JSON.parse(requestBody);
             if (!parsedRequest.name) {
-              res.writeHead(400, { "Content-Type": "application/json" });
+              res.writeHead(400, {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*",
+              });
               res.end(
                 JSON.stringify({
                   code: 400,
@@ -41,7 +43,10 @@ const handler = (req, res) => {
           break;
 
         case "GET":
-          res.writeHead(200, { "Content-Type": "application/json" });
+          res.writeHead(200, {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          });
           res.end(
             JSON.stringify({
               users: users,
@@ -52,7 +57,10 @@ const handler = (req, res) => {
       break;
 
     default:
-      res.writeHead(404, { "Content-Type": "application/json" });
+      res.writeHead(404, {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      });
       res.end(
         JSON.stringify({
           data: "Url Not Found!",
@@ -60,13 +68,7 @@ const handler = (req, res) => {
       );
   }
 };
-//   return handler;
-// }
+
 // Create a local server to receive data from
-
 const server0 = http.createServer(handler);
-// const server0 = http.createServer(createHandler());
-// const server2 = http.createServer(createHandler());
-
 server0.listen(8000);
-// server2.listen(8002);
